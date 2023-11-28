@@ -66,6 +66,7 @@ public class Customer extends Akun {
 
     }
 
+    @Override
     public int validateSignUp(String username, String password) {
         List<String> accounts = readCustomerAccounts();
         

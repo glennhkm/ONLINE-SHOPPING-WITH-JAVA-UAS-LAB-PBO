@@ -23,7 +23,7 @@ public class Main {
         String username;
         String password;
         
-        System.out.println("\n" + "=".repeat(30) + " SIGN-IN " + "=".repeat(30));
+        System.out.println("\n" + "==============================" + " SIGN-IN " + "==============================");
         System.out.println("\nPlease Login to your account\n");
 
         while (true){
@@ -60,7 +60,7 @@ public class Main {
         String username;
         String password;
 
-        System.out.println("\n" + "=".repeat(30) + " SIGN-UP " + "=".repeat(30));
+        System.out.println("\n" + "==============================" + " SIGN-UP " + "==============================");
         System.out.println("\nPlease enter the requirements below\n");
         
         while (true) {
@@ -103,15 +103,15 @@ public class Main {
     
     public void authMenu(){
         int inputAuth;
-        System.out.println("\n" + "=".repeat(30) + " DOBLEH INDUSTRIES " + "=".repeat(30) + "\n");
+        System.out.println("\n" + "==============================" + " DOBLEH INDUSTRIES " + "==============================" + "\n");
         while (true){
             try{
-                System.out.println("=".repeat(18));
+                System.out.println("==============================");
                 System.out.println("||              ||");
                 System.out.println("||  1. Sign in  ||");
                 System.out.println("||  2. Sign up  ||");
                 System.out.println("||              ||");
-                System.out.println("=".repeat(18));
+                System.out.println("==============================");
                 System.out.print("\nInput : ");
                 inputAuth = input.nextInt();
                 if(inputAuth == 1 || inputAuth == 2 ){
@@ -141,6 +141,8 @@ public class Main {
         driverAkun.run();
 
     }
+
+    
 
     public static void main(String[] args) {
         Main program = new Main();
