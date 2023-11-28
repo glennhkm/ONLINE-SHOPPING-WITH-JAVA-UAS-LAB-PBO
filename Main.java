@@ -110,14 +110,17 @@ public class Main {
                 System.out.println("||              ||");
                 System.out.println("||  1. Sign in  ||");
                 System.out.println("||  2. Sign up  ||");
+                System.out.println("||  3. Keluar   ||");
                 System.out.println("||              ||");
                 System.out.println("=".repeat(18));
                 System.out.print("\nInput : ");
                 inputAuth = input.nextInt();
                 if(inputAuth == 1 || inputAuth == 2 ){
                     break;
-                }
-                else{
+                } else if (inputAuth == 3) {
+                    System.out.println("\nTerima kasih! Sampai Jumpa lagi!");
+                    System.exit(0);
+                } else{
                     System.out.println("\n=> Please enter the available number options\n");
                 }
             }catch (InputMismatchException e) {
