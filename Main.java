@@ -2,13 +2,16 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.ibm.jsse2.util.d;
+
 public class Main {
+    
     public Akun akunAdmin = new Admin();
     public Akun akunCustomer = new Customer();
     public Driver driverAkun;
     Scanner input = new Scanner(System.in);
 
-
+    
     public static void bersihkanConsole() {
         try {
             Process process = new ProcessBuilder("cmd", "/c", "cls", "clear").inheritIO().start();
@@ -17,7 +20,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
 
     public void sign_in() {
         String username;
@@ -64,7 +66,6 @@ public class Main {
         System.out.println("\nPlease enter the requirements below\n");
         
         while (true) {
-
             try {    
                 System.out.print("Username : ");
                 username = input.next();
@@ -139,9 +140,8 @@ public class Main {
         authMenu();
         
         driverAkun.run();
-
     }
-
+    
     
 
     public static void main(String[] args) {
