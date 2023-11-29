@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminDriver extends Driver {
-    // Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
+    static ArrayList<Barang> daftarBarang = new ArrayList<>();
+    static ArrayList<Transaksi> daftarTransaksi = new ArrayList<>();
 
     public static void bersihkanConsole() {
         try {
@@ -14,21 +16,24 @@ public class AdminDriver extends Driver {
         }
     }
 
-    public void run(){
-        System.out.println("\nWELCOME ADMIN");
-        adminEdit();
-        
-    }
     @Override
     public void customerChoice() {
         // TODO Auto-generated method stub
         return;
     }
+
+    static void tampilkanBarangMenu() {
+        System.out.println("\n-------------------------------------");
+        System.out.println("============DAFTAR BARANG============\n");
+        for (Barang barang : daftarBarang) {
+            System.out.println("Nama\t: " + barang.nama);
+            System.out.println("Kode\t: " + barang.kode);
+            System.out.println("Harga\t: " + barang.harga);
+            System.out.println("Stok\t: " + barang.stok);
+            System.out.println(".....................................");
+        }
+    }
     
-    static Scanner input = new Scanner(System.in);
-    static ArrayList<Barang> daftarBarang = new ArrayList<>();
-    static ArrayList<Transaksi> daftarTransaksi = new ArrayList<>();
-        
     private void tambahBarangMenu() {
         System.out.println("\n-------------------------------------");
         System.out.println("==========TAMBAH DATA BARANG=========\n");
@@ -63,7 +68,7 @@ public class AdminDriver extends Driver {
                 if (barang.kode.equals(kodeHapus)) {
                     daftarBarang.remove(barang);
                     ditemukan = true;
-                    System.out.println("Data Berhasil Dihapus!\n");
+                    System.out.println("\nData Berhasil Dihapus!");
                     break;
                 }
             }
@@ -97,7 +102,7 @@ public class AdminDriver extends Driver {
                     System.out.print("Stok\t: ");
                     barang.stok = input.nextInt();
                     ditemukan = true;
-                    System.out.println("\nData Berhasil Diedit!\n");
+                    System.out.println("\nData Berhasil Diedit!");
                     break;
                 }
             }
@@ -125,50 +130,69 @@ public class AdminDriver extends Driver {
     }
     
     public void adminEdit(){
+        Main main = new Main();
+        
         try (Scanner s = new Scanner(System.in)) {
             int adminpilih;
             while(true){
                 try {
+                    System.out.println("\n=====================================");
                     System.out.println("Menu:");
-                    System.out.println("1. Tambah Barang");
-                    System.out.println("2. Hapus Barang");
-                    System.out.println("3. Edit Barang");
-                    System.out.println("4. Terima Transaksi");
-                    System.out.println("5. Log out");
-                    System.out.print("Pilih aksi (1-5): ");
+                    System.out.println("1. Tampilkan Barang");
+                    System.out.println("2. Tambah Barang");
+                    System.out.println("3. Hapus Barang");
+                    System.out.println("4. Edit Barang");
+                    System.out.println("5. Terima Transaksi");
+                    System.out.println("6. Log out");
+                    System.out.print("Pilih aksi (1-6): ");
                     
                     adminpilih = s.nextInt();
                     s.nextLine(); // Membersihkan newline setelah nextInt
 
                     switch (adminpilih) {
                         case 1:
+                            // Tampilkan Barang
+                            tampilkanBarangMenu();
+                            break;
+                        case 2:
                             // Tambah Barang
                             tambahBarangMenu();
                             break;
-                        case 2:
+                        case 3:
                             // Hapus Barang
                             hapusBarangMenu();
                             break;
-                        case 3:
+                        case 4:
                             // Edit Barang
                             editBarangMenu();
                             break;
-                        case 4:
+                        case 5:
                             // Terima Transaksi
                             terimaTransaksiMenu();
                             break;
-                        case 5:
-                            System.out.println("Anda telah Log Out dari akun anda");
-                            return;
+                        case 6:
+                            System.out.println("\nAnda telah Log Out dari akun anda!");
+                            main.authMenu();
+                            break;
                         default:
-                            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+                            System.out.println("\nPilihan tidak valid. Silakan coba lagi.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Terjadi kesalahan: " + e.getMessage());
+                    System.out.println("\nTerjadi kesalahan: " + e.getMessage());
                     s.nextLine(); // Membersihkan buffer input setelah terjadi pengecualian
                 }
             }
         }
     }
 
+    public void run(){
+        // daftar barang manual untuk list barang
+        daftarBarang.add(new Barang("Indomie Kari Ayam", "IKA01", 3500, 70));
+        daftarBarang.add(new Barang("Ultra Milk Coklat", "UMC01", 7000, 45));
+        daftarBarang.add(new Barang("Ciptadent Maxi White", "CMW01", 23000, 30));
+        daftarBarang.add(new Barang("Chitato Chicken BBQ", "CCB01", 11000, 65));
+        
+        System.out.println("\nWELCOME ADMIN!");
+        adminEdit();
+    }
 }
