@@ -2,15 +2,11 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.ibm.jsse2.util.d;
-
-public class Main {
-    
+public class Main {  
     public Akun akunAdmin = new Admin();
     public Akun akunCustomer = new Customer();
     public Driver driverAkun;
     Scanner input = new Scanner(System.in);
-
     
     public static void bersihkanConsole() {
         try {
@@ -57,7 +53,6 @@ public class Main {
         bersihkanConsole();
     }
 
-
     public void sign_up() {
         String username;
         String password;
@@ -100,7 +95,6 @@ public class Main {
         bersihkanConsole();
         authMenu();
     }
-
     
     public void authMenu(){
         int inputAuth;
@@ -111,14 +105,17 @@ public class Main {
                 System.out.println("||              ||");
                 System.out.println("||  1. Sign in  ||");
                 System.out.println("||  2. Sign up  ||");
+                System.out.println("||  3. Keluar   ||");
                 System.out.println("||              ||");
                 System.out.println("==============================");
                 System.out.print("\nInput : ");
                 inputAuth = input.nextInt();
                 if(inputAuth == 1 || inputAuth == 2 ){
                     break;
-                }
-                else{
+                } else if (inputAuth == 3) {
+                    System.out.println("\nTerima kasih! Sampai Jumpa lagi!\n");
+                    System.exit(0);
+                } else{
                     System.out.println("\n=> Please enter the available number options\n");
                 }
             }catch (InputMismatchException e) {
@@ -135,15 +132,12 @@ public class Main {
         }
     }
     
-    
     public void run() {
         authMenu();
         
         driverAkun.run();
     }
     
-    
-
     public static void main(String[] args) {
         Main program = new Main();
         program.run();
