@@ -2,13 +2,12 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class Main {  
     public Akun akunAdmin = new Admin();
     public Akun akunCustomer = new Customer();
     public Driver driverAkun;
     Scanner input = new Scanner(System.in);
-
-
+    
     public static void bersihkanConsole() {
         try {
             Process process = new ProcessBuilder("cmd", "/c", "cls", "clear").inheritIO().start();
@@ -18,12 +17,11 @@ public class Main {
         }
     }
 
-
     public void sign_in() {
         String username;
         String password;
         
-        System.out.println("\n" + "=".repeat(30) + " SIGN-IN " + "=".repeat(30));
+        System.out.println("\n" + "==============================" + " SIGN-IN " + "==============================");
         System.out.println("\nPlease Login to your account\n");
 
         while (true){
@@ -55,16 +53,14 @@ public class Main {
         bersihkanConsole();
     }
 
-
     public void sign_up() {
         String username;
         String password;
 
-        System.out.println("\n" + "=".repeat(30) + " SIGN-UP " + "=".repeat(30));
+        System.out.println("\n" + "==============================" + " SIGN-UP " + "==============================");
         System.out.println("\nPlease enter the requirements below\n");
         
         while (true) {
-
             try {    
                 System.out.print("Username : ");
                 username = input.next();
@@ -99,26 +95,25 @@ public class Main {
         bersihkanConsole();
         authMenu();
     }
-
     
     public void authMenu(){
         int inputAuth;
-        System.out.println("\n" + "=".repeat(30) + " DOBLEH INDUSTRIES " + "=".repeat(30) + "\n");
+        System.out.println("\n" + "==============================" + " DOBLEH INDUSTRIES " + "==============================" + "\n");
         while (true){
             try{
-                System.out.println("=".repeat(18));
+                System.out.println("==============================");
                 System.out.println("||              ||");
                 System.out.println("||  1. Sign in  ||");
                 System.out.println("||  2. Sign up  ||");
                 System.out.println("||  3. Keluar   ||");
                 System.out.println("||              ||");
-                System.out.println("=".repeat(18));
+                System.out.println("==============================");
                 System.out.print("\nInput : ");
                 inputAuth = input.nextInt();
                 if(inputAuth == 1 || inputAuth == 2 ){
                     break;
                 } else if (inputAuth == 3) {
-                    System.out.println("\nTerima kasih! Sampai Jumpa lagi!");
+                    System.out.println("\nTerima kasih! Sampai Jumpa lagi!\n");
                     System.exit(0);
                 } else{
                     System.out.println("\n=> Please enter the available number options\n");
@@ -137,14 +132,12 @@ public class Main {
         }
     }
     
-    
     public void run() {
         authMenu();
         
         driverAkun.run();
-
     }
-
+    
     public static void main(String[] args) {
         Main program = new Main();
         program.run();
