@@ -6,6 +6,7 @@ public class Barang {
     int harga;
     int stok;
 
+<<<<<<< HEAD
     public String getNama() {
         return nama;
     }
@@ -24,12 +25,15 @@ public class Barang {
     static ArrayList<Barang> daftarBarang = new ArrayList<>();
     
 
+=======
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
     public Barang(String nama, String kode, int harga, int stok) {
         this.nama = nama;
         this.kode = kode;
         this.harga = harga;
         this.stok = stok;
     }
+<<<<<<< HEAD
 
     public void lihatHistoryBelanja() {
         System.out.println("\n-------------------------------------");
@@ -48,4 +52,6 @@ public class Barang {
             System.out.println(".....................................");
         }
     }
+=======
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
 }

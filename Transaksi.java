@@ -10,4 +10,8 @@ public class Transaksi {
         this.totalPembayaran = totalPembayaran;
         this.metodePembayaran = metodePembayaran;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57

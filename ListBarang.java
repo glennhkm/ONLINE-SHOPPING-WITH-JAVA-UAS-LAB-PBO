@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class ListBarang {
@@ -15,5 +16,25 @@ public class ListBarang {
     daftarBarang.add(new Barang("Chitato Chicken BBQ", "CCB01", 11000, 65));
 
     
+=======
+//import java.util.List;
+
+public class ListBarang {
+    private String listBarang;
+    private String listTransaksi;
+
+    public ListBarang(String listBarang, String listTransaksi) {
+        this.listBarang = listBarang;
+        this.listTransaksi = listTransaksi;
+    }
+
+    public String getlistBarang() {
+        return listBarang;
+    }
+
+    public String getlistTransaksi() {
+        return listTransaksi;
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
     }
 }
+

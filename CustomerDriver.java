@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
+=======
+import java.util.Scanner;
+
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
 public class CustomerDriver extends Driver {
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Barang> keranjang = new ArrayList<>();
@@ -16,13 +21,18 @@ public class CustomerDriver extends Driver {
         System.out.println("\nWELCOME CUSTOMER");
         customerChoice();
     } 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
     @Override
     public void adminEdit() {
         // TODO Auto-generated method stub
         return;
     }
     
+<<<<<<< HEAD
     
     private void checkout() {
         // Lakukan proses checkout di sini, jika perlu
@@ -65,6 +75,49 @@ public class CustomerDriver extends Driver {
     //     }
         
         
+=======
+    private void lihatListBarang() {
+        
+        // System.out.println("List Barang yang Dijual:");
+        
+    }
+
+    private void masukkanBarangKeKeranjang() {
+        // Scanner scanner = new Scanner(System.in);
+// 
+        // System.out.print("Masukkan nama barang yang ingin dimasukkan ke keranjang: ");
+        // String barang = scanner.nextLine();
+// 
+        // 
+        // shoppingCart.add(barang);
+// 
+        // System.out.println("Barang berhasil dimasukkan ke keranjang.");
+    }
+
+    private void checkout() {
+        
+        // transactionHistory.addAll(shoppingCart);
+// 
+        
+        // shoppingCart.clear();
+// 
+        // System.out.println("Checkout berhasil.");
+    }
+
+    private void pilihMetodePembayaran() {
+        
+        // System.out.println("Pilih metode pembayaran:");
+        
+    }
+
+    private void lihatHistoryBelanja() {
+        
+        // System.out.println("History Belanja:");
+        // for (String item : transactionHistory) {
+            // System.out.println(item);
+        // }
+    }
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
     public void customerChoice() {
         try (Scanner scanner = new Scanner(System.in)) {
             int customerPilih;
@@ -84,19 +137,33 @@ public class CustomerDriver extends Driver {
 
                     switch (customerPilih) {
                         case 1:
+<<<<<<< HEAD
                             brg.lihatListBarang();
                             break;
                         case 2:
                             krjg.masukkanBarangKeKeranjang();
+=======
+                            lihatListBarang();
+                            break;
+                        case 2:
+                            masukkanBarangKeKeranjang();
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
                             break;
                         case 3:
                             checkout();
                             break;
                         case 4:
+<<<<<<< HEAD
                             byr.pilihMetodePembayaran();
                             break;
                         case 5:
                             brg.lihatHistoryBelanja();
+=======
+                            pilihMetodePembayaran();
+                            break;
+                        case 5:
+                            lihatHistoryBelanja();
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
                             break;
                         case 6:
                             System.out.println("Anda telah Log Out dari akun anda");
@@ -111,4 +178,8 @@ public class CustomerDriver extends Driver {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 223cde28d29ef22dee24c9a2b5121adff63f8b57
