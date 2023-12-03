@@ -1,55 +1,45 @@
 import java.util.List;
 
+/**
+* @author Kelompok4
+ * @version 1.0
+ * @since 2023-12-01
+ */
 abstract public class Akun {
 
+    /**
+     * Saves the user account information to a text file.
+     *
+     * @param username The username of the user.
+     * @param password The password of the user.
+     */
     public abstract void saveToTextFile(String username, String password);
-        // // Menentukan nama file untuk menyimpan data pengguna
 
-        // try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
-        //     // Menulis username dan password ke dalam file
-        //     writer.println("Username: " + username);
-        //     writer.println("Password: " + password);
-        //     writer.println(); // Tambahkan baris kosong antara setiap entri pengguna
-        //     System.out.println("User data has been saved to " + fileName);
-            
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-    
-
+    /**
+     * Reads and returns a list of customer accounts from a data source.
+     *
+     * @return A list containing customer account information.
+     */
     public abstract List<String> readCustomerAccounts();
-        // List<String> accounts = new ArrayList<>();
-        
-        // try(Scanner scanner = new Scanner(new File(fileName))) {
-        //     while(scanner.hasNextLine()) {            
-        //         String username = scanner.nextLine().split(":")[1].trim();            
-        //         String password = scanner.nextLine().split(":")[1].trim();
 
-        //         accounts.add(username);
-        //         accounts.add(password);
-
-        //         scanner.nextLine(); 
-        //     }
-
-        // } catch (FileNotFoundException e) {
-        //     e.printStackTrace();
-        // }
-
-        // return accounts;
-
+    /**
+     * Validates the sign-in credentials for a user.
+     *
+     * @param username The username entered for sign-in.
+     * @param password The password entered for sign-in.
+     * @return True if the provided credentials are valid, false otherwise.
+     */
     public abstract boolean validateSignIn(String username, String password);
 
-        // List<String> accounts = readCustomerAccounts();
-        
-        // for(int i = 0; i < accounts.size(); i += 2) {
-        //     String uname = accounts.get(i);
-        //     String pword = accounts.get(i + 1);
-            
-        //     if(username.equals(uname) && password.equals(pword)) {
-        //         return true;
-        //     }
-        // }
-        // return false;
+    /**
+     * Validates the sign-up credentials for a new user.
+     *
+     * @param username The username entered for sign-up.
+     * @param password The password entered for sign-up.
+     * @return An integer code indicating the result of the validation:
+     *         - 0: Sign-up successful.
+     *         - 1: Username already exists.
+     *         - 2: Other validation failure.
+     */
     public abstract int validateSignUp(String username, String password);
-
 }
