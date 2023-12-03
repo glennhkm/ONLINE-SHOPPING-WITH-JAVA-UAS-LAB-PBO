@@ -1,7 +1,7 @@
 Kode Barang: BRG301123272
 Nama Barang: Camel
 Harga: 100000
-Stok: 1
+Stok: 6
 
 Kode Barang: BRG301123986
 Nama Barang: Sampoerna
@@ -16,10 +16,10 @@ Stok: 10
 Kode Barang: BRG031223202
 Nama Barang: Marlboro
 Harga: 40000
-Stok: -1
+Stok: 20
 
 Kode Barang: BRG031223408
 Nama Barang: 76
 Harga: 20000
-Stok: 1
+Stok: 8
 

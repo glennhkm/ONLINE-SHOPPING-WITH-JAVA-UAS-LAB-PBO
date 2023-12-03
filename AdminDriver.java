@@ -191,13 +191,14 @@ public class AdminDriver extends Driver {
          * Displays the list of available items.
          */
         @Override
-        public void showBarang() {
+        public boolean showBarang() {
             listBarang = new ListBarang();
             listBarang.bacaDariFile("Admin/Barang/ListBarang.txt");
             ArrayList<Barang> barang = listBarang.barang;
             System.out.println("\n" + "=".repeat(30) + " ITEMS LIST " + "=".repeat(30) + "\n");
             if (barang.isEmpty()) {
                 System.out.println("=> item not found\n");
+                return false;
             } else {
                 for (Barang b : barang) {
                     System.out.println("Item's code: " + b.getKodeBarang());
@@ -208,6 +209,7 @@ public class AdminDriver extends Driver {
                 }
             }
             System.out.println("=".repeat(72) + "\n");
+            return true;
         }
 
         /**
@@ -219,53 +221,54 @@ public class AdminDriver extends Driver {
             listBarang = new ListBarang();
             listBarang.bacaDariFile("Admin/Barang/ListBarang.txt");
 
-            showBarang();
-            System.out.println("\n" + "=".repeat(30) + " EDIT ITEM " + "=".repeat(31) + "\n");
-            while (true) {
-                System.out.print("Input the Item's code that you want to edit: ");
-                kodeBarang = input.next();
-                if (listBarang.idValidator(kodeBarang)) {
-                    break;
+            if(showBarang()){
+                System.out.println("\n" + "=".repeat(30) + " EDIT ITEM " + "=".repeat(31) + "\n");
+                while (true) {
+                    System.out.print("Input the Item's code that you want to edit: ");
+                    kodeBarang = input.next();
+                    if (listBarang.idValidator(kodeBarang)) {
+                        break;
+                    }
+                    System.out.println("\n=> Item's code is not found.");
                 }
-                System.out.println("\n=> Item's code is not found.");
-            }
-
-            System.out.print("New item's name: ");
-            String namaBaru = input.next();
-
-            int hargaBaru;
-            while (true) {
-                try {
-                    System.out.print("New price: ");
-                    hargaBaru = input.nextInt();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("\n=> New price must be number\n");
-                    input.nextLine();
+                
+                System.out.print("New item's name: ");
+                String namaBaru = input.next();
+                
+                int hargaBaru;
+                while (true) {
+                    try {
+                        System.out.print("New price: ");
+                        hargaBaru = input.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("\n=> New price must be number\n");
+                        input.nextLine();
+                    }
                 }
-            }
 
-            int stokBaru;
-            while (true) {
-                try {
-                    System.out.print("New stock: ");
-                    stokBaru = input.nextInt();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("\n=>New stock must be number\n");
-                    input.nextLine();
+                int stokBaru;
+                while (true) {
+                    try {
+                        System.out.print("New stock: ");
+                        stokBaru = input.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("\n=>New stock must be number\n");
+                        input.nextLine();
+                    }
                 }
-            }
 
-            listBarang.editBarang(kodeBarang, namaBaru, hargaBaru, stokBaru);
-            System.out.println("\n=> Item edited successfully.\n");
-            for (int i = 0; i <= 8000; i++) {
-                if (i / 2000 == 0) {
-                    continue;
+                listBarang.editBarang(kodeBarang, namaBaru, hargaBaru, stokBaru);
+                System.out.println("\n=> Item edited successfully.\n");
+                for (int i = 0; i <= 8000; i++) {
+                    if (i / 2000 == 0) {
+                        continue;
+                    }
+                    System.out.print("\rRedirecting ... " + i / 2000);
                 }
-                System.out.print("\rRedirecting ... " + i / 2000);
+                bersihkanConsole();
             }
-            bersihkanConsole();
         }
 
         /**
@@ -278,49 +281,50 @@ public class AdminDriver extends Driver {
             listBarang = new ListBarang();
             listBarang.bacaDariFile("Admin/Barang/ListBarang.txt");
 
-            showBarang();
-            System.out.println("\n" + "=".repeat(30) + " DELETE ITEM " + "=".repeat(30) + "\n");
-
-            while (true) {
-                System.out.print("Input the Item's code that you want to delete: ");
-                kodeBarang = input.next();
-                if(listBarang.idValidator(kodeBarang)){
-                    while (true) {   
-                        try{
-                            System.out.println("1. Delete");
-                            System.out.println("2. Cancel");
-                            System.out.print("\nAre you sure want to delete this item? : ");
-                            validation = input.nextInt();
-                        }catch(InputMismatchException e){
-                            System.out.println("\n=> Input the available options");
-                            input.nextLine();
-                        }
-                        if(validation == 1){
-                            break;
-                        } else if (validation == 2){
-                            System.out.println("\n=> Cancelled.\n");
-                            for (int i = 0; i <= 8000; i++) {
-                                if (i / 2000 == 0) {
-                                    continue;
-                                }
-                                System.out.print("\rRedirecting ... " + i / 2000);
+            if(showBarang()){
+                System.out.println("\n" + "=".repeat(30) + " DELETE ITEM " + "=".repeat(30) + "\n");
+                
+                while (true) {
+                    System.out.print("Input the Item's code that you want to delete: ");
+                    kodeBarang = input.next();
+                    if(listBarang.idValidator(kodeBarang)){
+                        while (true) {   
+                            try{
+                                System.out.println("1. Delete");
+                                System.out.println("2. Cancel");
+                                System.out.print("\nAre you sure want to delete this item? : ");
+                                validation = input.nextInt();
+                            }catch(InputMismatchException e){
+                                System.out.println("\n=> Input the available options");
+                                input.nextLine();
                             }
-                            return;
-                        }   
+                            if(validation == 1){
+                                break;
+                            } else if (validation == 2){
+                                System.out.println("\n=> Cancelled.\n");
+                                for (int i = 0; i <= 8000; i++) {
+                                    if (i / 2000 == 0) {
+                                        continue;
+                                    }
+                                    System.out.print("\rRedirecting ... " + i / 2000);
+                                }
+                                return;
+                            }   
+                        }
                     }
+                    listBarang.hapusBarang(kodeBarang);
+                    break;
                 }
-                listBarang.hapusBarang(kodeBarang);
-                break;
-            }
 
-            System.out.println("\n=> Item deleted successfully.\n");
-            for (int i = 0; i <= 8000; i++) {
-                if (i / 2000 == 0) {
-                    continue;
+                System.out.println("\n=> Item deleted successfully.\n");
+                for (int i = 0; i <= 8000; i++) {
+                    if (i / 2000 == 0) {
+                        continue;
+                    }
+                    System.out.print("\rRedirecting ... " + i / 2000);
                 }
-                System.out.print("\rRedirecting ... " + i / 2000);
+                bersihkanConsole();
             }
-            bersihkanConsole();
         }
 
         /**

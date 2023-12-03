@@ -42,7 +42,7 @@ abstract public class Driver {
         /**
          * Displays the list of available items.
          */
-        void showBarang();
+        boolean showBarang();
 
         /**
          * Edits the details of an existing item.

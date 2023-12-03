@@ -157,36 +157,40 @@ public class CustomerDriver extends Driver {
             keranjang = new Keranjang();
             String kodeBarang;
             
-            keranjang.lihatKeranjang(akun.getUsername());
-            System.out.println("\n" + "=".repeat(30) + " EDIT ITEM ON CART " + "=".repeat(30) + "\n");
-            while (true) {
-                System.out.print("Input the Item's code that you want to edit: ");
-                kodeBarang = input.next();
-                if (keranjang.idValidator(kodeBarang, akun.getUsername())) {
-                    while (true){
-                        int quantity;
-                        System.out.print("\nNew Quantity: ");
-                        quantity = input.nextInt();
-                        int count = keranjang.editBarang(kodeBarang, quantity, akun.getUsername());
-                        if(count == 1){
-                            System.out.println("\n=> Quantity over the stock");
+            if(!showCart()){
+                System.out.println("=> You have no items in your cart.");   
+            }
+            else{
+                System.out.println("\n" + "=".repeat(30) + " EDIT ITEM ON CART " + "=".repeat(30) + "\n");
+                while (true) {
+                    System.out.print("Input the Item's code that you want to edit: ");
+                    kodeBarang = input.next();
+                    if (keranjang.idValidator(kodeBarang, akun.getUsername())) {
+                        while (true){
+                            int quantity;
+                            System.out.print("\nNew Quantity: ");
+                            quantity = input.nextInt();
+                            int count = keranjang.editBarang(kodeBarang, quantity, akun.getUsername());
+                            if(count == 1){
+                                System.out.println("\n=> Quantity over the stock");
+                            }
+                            else{
+                                break;
+                            }
                         }
-                        else{
-                            break;
-                        }
-                    }
 
-                    System.out.println("\n=> Item's quantity edited successfully\n");
-                    break;
+                        System.out.println("\n=> Item's quantity edited successfully\n");
+                        break;
+                    }
                 }
-            }
-            for (int i = 0; i <= 8000; i++) {
-                if (i / 2000 == 0) {
-                    continue;
+                for (int i = 0; i <= 8000; i++) {
+                    if (i / 2000 == 0) {
+                        continue;
+                    }
+                    System.out.print("\rRedirecting ... " + i / 2000);
                 }
-                System.out.print("\rRedirecting ... " + i / 2000);
+                bersihkanConsole();
             }
-            bersihkanConsole();
         }
         
         @Override
@@ -194,26 +198,31 @@ public class CustomerDriver extends Driver {
             keranjang = new Keranjang();
             String kodeBarang;
             
-            keranjang.lihatKeranjang(akun.getUsername());
-            System.out.println("\n" + "=".repeat(30) + " DELETE ITEM ON CART " + "=".repeat(30) + "\n");
-            while (true) {
-                System.out.print("Input the Item's code that you want to delete: ");
-                kodeBarang = input.next();
+            if(!showCart()){
+                System.out.println("=> You have no items in your cart.");   
+            }
+            else{
+
+                System.out.println("\n" + "=".repeat(30) + " DELETE ITEM ON CART " + "=".repeat(30) + "\n");
+                while (true) {
+                    System.out.print("Input the Item's code that you want to delete: ");
+                    kodeBarang = input.next();
+                    
+                    if (keranjang.hapusBarang(kodeBarang, akun.getUsername())) {
+                        System.out.println("\n=> Item's deleted successfully.\n");
+                        break;
+                    }
+                    System.out.println("\n=> Item's code not found.\n");
+                }
                 
-                if (keranjang.hapusBarang(kodeBarang, akun.getUsername())) {
-                    System.out.println("\n=> Item's deleted successfully.\n");
-                    break;
+                for (int i = 0; i <= 8000; i++) {
+                    if (i / 2000 == 0) {
+                        continue;
+                    }
+                    System.out.print("\rRedirecting ... " + i / 2000);
                 }
-                System.out.println("\n=> Item's code not found.\n");
+                bersihkanConsole();
             }
-            
-            for (int i = 0; i <= 8000; i++) {
-                if (i / 2000 == 0) {
-                    continue;
-                }
-                System.out.print("\rRedirecting ... " + i / 2000);
-            }
-            bersihkanConsole();
         }
     }
     
