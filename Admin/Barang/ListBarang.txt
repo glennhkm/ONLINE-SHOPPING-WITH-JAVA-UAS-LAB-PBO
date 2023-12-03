@@ -1,25 +1,25 @@
 Kode Barang: BRG301123272
-Nama Barang: Camel
+Nama Barang: Nike
 Harga: 100000
 Stok: 6
 
 Kode Barang: BRG301123986
-Nama Barang: Sampoerna
+Nama Barang: Adidas
 Harga: 32000
-Stok: 1
+Stok: 5
 
 Kode Barang: BRG301123308
-Nama Barang: Magnum
+Nama Barang: Puma
 Harga: 20000
 Stok: 10
 
 Kode Barang: BRG031223202
-Nama Barang: Marlboro
+Nama Barang: Reebok
 Harga: 40000
 Stok: 20
 
 Kode Barang: BRG031223408
-Nama Barang: 76
+Nama Barang: New Balance
 Harga: 20000
-Stok: 8
+Stok: 1
 

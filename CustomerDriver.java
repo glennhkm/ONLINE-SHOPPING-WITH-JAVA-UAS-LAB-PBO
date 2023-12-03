@@ -1,17 +1,9 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -62,12 +54,19 @@ public class CustomerDriver extends Driver {
                 }
             }
             while (true) {
-                try {
-                    System.out.print("Quantity: ");
-                    jumlahBeli = input.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("\n=> Quantity input type is not valid!\n");
-                    input.nextLine();
+                while (true) {
+                    try {
+                        System.out.print("Quantity: ");
+                        jumlahBeli = input.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("\n=> Quantity input type is not valid!\n");
+                        input.nextLine();
+                    }
+                    if(jumlahBeli > 0){
+                        break;
+                    }else{
+                        System.out.println("\n=> Quantity have to more than 0\n");
+                    }
                 }
                 if(keranjang.tambahBarang(kodeBarang, "Customer/Cus" + akun.getUsername() + "/Keranjang.txt", jumlahBeli) > 0){
                     System.out.println("\n=> This item's on your cart has quantity over the stock\n");
@@ -109,7 +108,6 @@ public class CustomerDriver extends Driver {
                     System.out.println("\n\n=> You still have a transaction on queue");
                 }
             } catch (IOException e) {
-
                 e.printStackTrace();
                 System.out.println("An error occurred while checking the file.");
             }
@@ -118,7 +116,20 @@ public class CustomerDriver extends Driver {
         @Override
         public void checkInvoice() {
             transaksi = new Transaksi();
-            transaksi.cekTransaksi(akun.getUsername());
+            
+            Path path = Paths.get("Customer/Cus" + akun.getUsername() + "/Invoice.txt");
+            try {
+                byte[] fileContent = Files.readAllBytes(path);
+
+                if (fileContent.length == 0) {
+                    System.out.println("\n=> You have not invoice yet");
+                } else {
+                    transaksi.cekTransaksi(akun.getUsername());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("An error occurred while checking the file.");
+            }
         }
         
         @Override
@@ -168,8 +179,16 @@ public class CustomerDriver extends Driver {
                     if (keranjang.idValidator(kodeBarang, akun.getUsername())) {
                         while (true){
                             int quantity;
-                            System.out.print("\nNew Quantity: ");
-                            quantity = input.nextInt();
+                            while (true) {   
+                                System.out.print("\nNew Quantity: ");
+                                quantity = input.nextInt();
+                                if(quantity > 0){
+                                    break;
+                                }
+                                else{
+                                    System.out.println("\n=> Quantity have to more than 0");
+                                }
+                            }
                             int count = keranjang.editBarang(kodeBarang, quantity, akun.getUsername());
                             if(count == 1){
                                 System.out.println("\n=> Quantity over the stock");

@@ -1,4 +1,6 @@
- /**
+import java.util.InputMismatchException;
+
+/**
  * @author Your Name
  * @version 1.0
  * @since 2023-12-01
@@ -21,8 +23,17 @@ public class Bank extends Pembayaran {
         System.out.print("\nChoose your bank account: ");
         bankOption = input.nextInt();
         namaBank = (bankOption == 1) ? "BSI" : (bankOption == 2) ? "BCA" : "BNI";
-        System.out.print("\nInput your " + namaBank + " PIN: ");
-        input.nextInt();
+        while (true) {
+            try{
+                // Input BANK PIN
+                System.out.print("\nInput your " + namaBank + " PIN: ");
+                input.nextInt();
+                break;
+            } catch(InputMismatchException e){
+                System.out.println("\n=> PIN is not valid.");
+                input.nextLine();
+            }
+        }
         bersihkanConsole();
         System.out.println("=".repeat(10) + " " + namaBank + " " + "=".repeat(10));
         System.out.println("\nPayment Information\n");

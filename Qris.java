@@ -1,5 +1,4 @@
-import java.io.IOException;
-
+import java.util.InputMismatchException;
 /**
  * @author Kelompok 4
  * @version 1.0
@@ -28,16 +27,24 @@ public class Qris extends Pembayaran {
         System.out.println("");
 
         // Simulate redirection
-        for (int i = 0; i <= 10000; i++) {
-            if (i / 2000 == 0) {
+        for (int i = 0; i <= 100000; i++) {
+            if (i / 20000 == 0) {
                 continue;
             }
-            System.out.print("\rRedirecting ... " + i / 2000);
+            System.out.print("\rRedirecting ... " + i / 20000);
         }
 
-        // Input QRIS PIN
-        System.out.print("\nInput your QRIS PIN: ");
-        input.nextInt();
+        while (true) {
+            try{
+                // Input QRIS PIN
+                System.out.print("\nInput your QRIS PIN: ");
+                input.nextInt();
+                break;
+            } catch(InputMismatchException e){
+                System.out.println("\n=> PIN is not valid.");
+                input.nextLine();
+            }
+        }
 
         bersihkanConsole();
 

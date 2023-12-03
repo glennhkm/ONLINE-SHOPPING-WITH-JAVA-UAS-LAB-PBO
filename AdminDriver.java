@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
 
