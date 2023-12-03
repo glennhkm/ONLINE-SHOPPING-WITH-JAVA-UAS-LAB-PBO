@@ -1,0 +1,60 @@
+Kode Transaksi: glennTRS031223717 - ACCEPTED
+
+Item's Code: BRG031223408
+Item's Name: 76
+Quantity: 0
+Price: 0
+
+
+Item's Code: BRG301123986
+Item's Name: Sampoerna
+Quantity: 1
+Price: 32000
+
+Payment method: COD
+Total Amount: 32000
+Created at: 03 December 2023 23:50
+
+
+Kode Transaksi: glennTRS041223157 - DECLINED
+
+Item's Code: BRG301123986
+Item's Name: Sampoerna
+Quantity: 1
+Price: 32000
+
+Payment method: QRIS
+Total Amount: 32000
+Created at: 04 December 2023 00:04
+
+
+Kode Transaksi: doblehTRS041223632 - ACCEPTED
+
+Item's Code: BRG031223202
+Item's Name: Marlboro
+Quantity: 1
+Price: 40000
+
+
+Item's Code: BRG031223408
+Item's Name: 76
+Quantity: 11
+Price: 220000
+
+
+Item's Code: BRG031223803
+Item's Name: Luffman
+Quantity: 6
+Price: 102000
+
+
+Item's Code: BRG031223202
+Item's Name: Marlboro
+Quantity: 1
+Price: 40000
+
+Payment method: Bank Transfer
+Total Amount: 402000
+Created at: 04 December 2023 00:08
+
+
