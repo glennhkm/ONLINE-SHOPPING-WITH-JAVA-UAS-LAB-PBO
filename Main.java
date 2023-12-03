@@ -55,28 +55,22 @@ public class Main {
             }
         }
         
+        System.out.println("\n=> Login successfully\n");
+        for(int i = 0; i <= 80000; i++){
+            if(i/20000 == 0){
+                continue;
+            }
+            System.out.print("\rRedirecting ... " + i/20000);
+        }
+
         if(((Customer)akunCustomer).validateSignIn(username, password)){
             
-            System.out.println("\n=> Login successfully\n");
-            for(int i = 0; i <= 8000; i++){
-                if(i/2000 == 0){
-                    continue;
-                }
-                System.out.print("\rRedirecting ... " + i/2000);
-            }
             bersihkanConsole();
             CustomerDriver driver = new CustomerDriver((Customer)akunCustomer);  
             driver.run();
         }
         
         else{
-            System.out.println("\n=> Login successfully\n");
-            for(int i = 0; i <= 8000; i++){
-                if(i/2000 == 0){
-                    continue;
-                }
-                System.out.print("\rRedirecting ... " + i/2000);
-            }
             bersihkanConsole();
             driverAkun = new AdminDriver();
             driverAkun.run();
@@ -135,11 +129,11 @@ public class Main {
             akunCustomer.saveToTextFile(username, password);
             System.err.println("\n=> Your account created successfully!\n");
             
-            for(int i = 0; i <= 8000; i++){
-                if(i/2000 == 0){
+            for(int i = 0; i <= 80000; i++){
+                if(i/20000 == 0){
                     continue;
                 }
-                System.out.print("\rRedirecting ... " + i/2000);
+                System.out.print("\rRedirecting ... " + i/20000);
             }
             bersihkanConsole();
             authMenu();

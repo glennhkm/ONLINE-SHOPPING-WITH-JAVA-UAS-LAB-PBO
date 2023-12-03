@@ -1,5 +1,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -55,79 +58,104 @@ public class AdminDriver extends Driver {
     }
 
     /**
-     * The nested {@code AdminImpl} class implements the {@code AdminDriver} interface
-     * and provides specific methods for managing users, items, and transactions by the admin.
+     * The nested {@code AdminImpl} class implements the {@code AdminDriver}
+     * interface
+     * and provides specific methods for managing users, items, and transactions by
+     * the admin.
      */
     private class AdminImpl implements AdminDriver {
 
-         /**
+        /**
          * Deletes a customer user account based on the provided customer ID.
          */
         @Override
         public void deleteUser() {
-            int idCustomer;
-            System.out.println("\n" + "=".repeat(30) + " DELETE CUSTOMER " + "=".repeat(30) + "\n");
-            System.out.print("ID Customer : ");
-            idCustomer = input.nextInt();
 
+            Path path = Paths.get("Customer/Credentials/AkunCustomer.txt");
             try {
-                File inputFile = new File("Customer/Credentials/AkunCustomer.txt");
-                File tempFile = new File("Customer/Credentials/AkunCustomer_temp.txt");
+                byte[] fileContent = Files.readAllBytes(path);
 
-                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-                PrintWriter writer = new PrintWriter(new FileWriter(tempFile));
-
-                String line;
-                boolean userFound = false;
-                String deletedUsername = null;
-
-                while ((line = reader.readLine()) != null) {
-                    if (line.trim().startsWith("id:")) {
-                        int idFromFile = Integer.parseInt(line.split(":")[1].trim());
-
-                        if (idFromFile == idCustomer) {
-                            userFound = true;
-                            deletedUsername = reader.readLine().split(":")[1].trim();
-                            for (int i = 0; i < 2; i++) {
-                                reader.readLine();
-                            }
-                        } else {
-                            writer.println(line);
-                        }
-                    } else {
-                        writer.println(line);
-                    }
-                }
-
-                reader.close();
-                writer.close();
-
-                File folder = new File("Customer/Cus" + deletedUsername);
-                if (!userFound) {
-                    System.out.println("Customer ID not found.");
+                if (fileContent.length == 0) {
+                    System.out.println("\n=> There is no customer.");
                 } else {
-                    if (deleteFolder(folder)) {
-                        System.out.println("\n=> User " + deletedUsername + " successfully deleted.\n");
-                    } else {
-                        System.out.println("Gagal menghapus folder.");
-                    }
-                    inputFile.delete();
-                    tempFile.renameTo(inputFile);
-                }
 
+                    try (Scanner scanner = new Scanner(new File("Customer/Credentials/AkunCustomer.txt"))) {
+                        System.out.println("\n" + "=".repeat(30) + " CUSTOMERS " + "=".repeat(30) + "\n");
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            System.out.println(line);
+                        }
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    int idCustomer;
+                    System.out.println("\n" + "=".repeat(30) + " DELETE CUSTOMER " + "=".repeat(30) + "\n");
+                    System.out.print("ID Customer : ");
+                    idCustomer = input.nextInt();
+
+                    try {
+                        File inputFile = new File("Customer/Credentials/AkunCustomer.txt");
+                        File tempFile = new File("Customer/Credentials/AkunCustomer_temp.txt");
+
+                        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                        PrintWriter writer = new PrintWriter(new FileWriter(tempFile));
+
+                        String line;
+                        boolean userFound = false;
+                        String deletedUsername = null;
+
+                        while ((line = reader.readLine()) != null) {
+                            if (line.trim().startsWith("id:")) {
+                                int idFromFile = Integer.parseInt(line.split(":")[1].trim());
+
+                                if (idFromFile == idCustomer) {
+                                    userFound = true;
+                                    deletedUsername = reader.readLine().split(":")[1].trim();
+                                    for (int i = 0; i < 2; i++) {
+                                        reader.readLine();
+                                    }
+                                } else {
+                                    writer.println(line);
+                                }
+                            } else {
+                                writer.println(line);
+                            }
+                        }
+
+                        reader.close();
+                        writer.close();
+
+                        File folder = new File("Customer/Cus" + deletedUsername);
+                        if (!userFound) {
+                            System.out.println("Customer ID not found.");
+                        } else {
+                            if (deleteFolder(folder)) {
+                                System.out.println("\n=> User " + deletedUsername + " successfully deleted.\n");
+                            } else {
+                                System.out.println("Gagal menghapus folder.");
+                            }
+                            inputFile.delete();
+                            tempFile.renameTo(inputFile);
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    for (int i = 0; i <= 8000; i++) {
+                        if (i / 2000 == 0) {
+                            continue;
+                        }
+                        System.out.print("\rRedirecting ... " + i / 2000);
+                    }
+                    bersihkanConsole();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("An error occurred while checking the file.");
             }
-            for (int i = 0; i <= 8000; i++) {
-                if (i / 2000 == 0) {
-                    continue;
-                }
-                System.out.print("\rRedirecting ... " + i / 2000);
-            }
-            bersihkanConsole();
         }
 
-         /**
+        /**
          * Adds a new item to the list of available items.
          */
         @Override
@@ -220,7 +248,7 @@ public class AdminDriver extends Driver {
             listBarang = new ListBarang();
             listBarang.bacaDariFile("Admin/Barang/ListBarang.txt");
 
-            if(showBarang()){
+            if (showBarang()) {
                 System.out.println("\n" + "=".repeat(30) + " EDIT ITEM " + "=".repeat(31) + "\n");
                 while (true) {
                     System.out.print("Input the Item's code that you want to edit: ");
@@ -230,10 +258,10 @@ public class AdminDriver extends Driver {
                     }
                     System.out.println("\n=> Item's code is not found.");
                 }
-                
+
                 System.out.print("New item's name: ");
                 String namaBaru = input.next();
-                
+
                 int hargaBaru;
                 while (true) {
                     try {
@@ -280,26 +308,26 @@ public class AdminDriver extends Driver {
             listBarang = new ListBarang();
             listBarang.bacaDariFile("Admin/Barang/ListBarang.txt");
 
-            if(showBarang()){
+            if (showBarang()) {
                 System.out.println("\n" + "=".repeat(30) + " DELETE ITEM " + "=".repeat(30) + "\n");
-                
+
                 while (true) {
                     System.out.print("Input the Item's code that you want to delete: ");
                     kodeBarang = input.next();
-                    if(listBarang.idValidator(kodeBarang)){
-                        while (true) {   
-                            try{
+                    if (listBarang.idValidator(kodeBarang)) {
+                        while (true) {
+                            try {
                                 System.out.println("1. Delete");
                                 System.out.println("2. Cancel");
                                 System.out.print("\nAre you sure want to delete this item? : ");
                                 validation = input.nextInt();
-                            }catch(InputMismatchException e){
+                            } catch (InputMismatchException e) {
                                 System.out.println("\n=> Input the available options");
                                 input.nextLine();
                             }
-                            if(validation == 1){
+                            if (validation == 1) {
                                 break;
-                            } else if (validation == 2){
+                            } else if (validation == 2) {
                                 System.out.println("\n=> Cancelled.\n");
                                 for (int i = 0; i <= 8000; i++) {
                                     if (i / 2000 == 0) {
@@ -308,7 +336,7 @@ public class AdminDriver extends Driver {
                                     System.out.print("\rRedirecting ... " + i / 2000);
                                 }
                                 return;
-                            }   
+                            }
                         }
                     }
                     listBarang.hapusBarang(kodeBarang);
@@ -345,11 +373,10 @@ public class AdminDriver extends Driver {
             try (Scanner scanner = new Scanner(new File("Admin/Transaksi/Transaksi.txt"))) {
                 while (scanner.hasNextLine()) {
                     String baris = scanner.nextLine();
-                    if(baris.contains("Created at")){
+                    if (baris.contains("Created at")) {
                         System.out.println(baris + "\n");
                         System.out.println("-".repeat(50));
-                    }
-                    else{
+                    } else {
                         System.out.println(baris);
                     }
                 }
@@ -474,7 +501,8 @@ public class AdminDriver extends Driver {
     }
 
     /**
-     * Runs the admin dashboard, allowing the admin to choose various options for managing the system.
+     * Runs the admin dashboard, allowing the admin to choose various options for
+     * managing the system.
      */
     public void run() {
 
