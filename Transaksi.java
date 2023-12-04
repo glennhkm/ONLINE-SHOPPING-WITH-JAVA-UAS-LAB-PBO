@@ -131,12 +131,30 @@ public class Transaksi {
     public void buatTransaksi(String username){
         listBarangKeranjang.bacaDariFile("Customer/Cus" + username + "/Keranjang.txt");
         barangKeranjang = listBarangKeranjang.barang;
+
+        listBarangAdmin = new ListBarang();
+        listBarangAdmin.bacaDariFile("Admin/Barang/ListBarang.txt");
+        barangAdmin = listBarangAdmin.barang;
+
         String platform;
         int paymentMethod;
         int statusCheckout;
         setJumlahHarga(0);
 
         for (Barang b : barangKeranjang) {
+            for(Barang bar : barangAdmin){
+                if(b.getKodeBarang().equals(bar.getKodeBarang())){
+                    if(bar.getStok() < b.getHarga()){
+                        System.out.println(bar.getStok());
+                        System.out.println("Failed processing transaction");
+                        System.out.println("Quantity over the stock\n");
+                        System.out.println("Item's code: " + b.getKodeBarang());
+                        System.out.println("Item's name: " + b.getNamaBarang());
+                        System.out.println("Quantity: " + b.getHarga());
+                        return;
+                    }
+                }
+            }
             setJumlahHarga(getJumlahHarga() + b.getStok());
         }
 

@@ -1,4 +1,4 @@
-Kode Transaksi: glenTRS041223240 - DECLINED
+Kode Transaksi: glenTRS041223240 - DECLINED - Refund Successfully Processed!
 
 Item's Code: BRG031223408
 Item's Name: New Balance

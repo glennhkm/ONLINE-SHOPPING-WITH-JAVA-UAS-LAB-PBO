@@ -99,7 +99,7 @@ public class CustomerDriver extends Driver {
                 if (fileContent.length == 0) {
                     if(showCart()){
                         transaksi.buatTransaksi(akun.getUsername());
-                        bersihkanConsole(); 
+                        // bersihkanConsole(); 
                     }
                     else{
                         System.out.println("\n=> You have nothing to checkout, cart cannot be empty!\n");
