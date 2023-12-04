@@ -1,5 +1,0 @@
-Kode Barang: BRG301123986
-Nama Barang: Adidas
-Jumlah: 4
-Harga: 128000
-
